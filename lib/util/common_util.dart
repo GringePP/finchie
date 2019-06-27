@@ -7,3 +7,8 @@ startPage(context, Widget w) {
 closePage(context) {
   if (Navigator.canPop(context)) Navigator.pop(context);
 }
+
+
+splitTime(time) {
+  return time.split('T')[0];
+}

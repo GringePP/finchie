@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:finchie/network/yuque_api.dart';
 import 'package:finchie/util/common_util.dart';
 import 'package:finchie/widget/user_info_widget.dart';
@@ -14,7 +16,7 @@ class InfoPage extends StatefulWidget {
 class _InfoPageState extends State<InfoPage> {
   final String title = 'Info Page';
 
-  var info = {"name": "", "avatarUrl": ""};
+  Map<String, dynamic> info = {"name": "", "small_avatar_url": "", "created_at": "", "avatar_url": ""};
 
   @override
   void initState() {
@@ -24,7 +26,7 @@ class _InfoPageState extends State<InfoPage> {
 
   _onGetData(data) {
     setState(() {
-      info = {"name": data['name'], "avatarUrl": data['avatar_url']};
+      info = data;
     });
   }
 

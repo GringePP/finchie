@@ -18,9 +18,22 @@ fetch(url, {onSuccess, onError}) async {
   final header = _getHeader();
   try {
     http.Response r = await http.get(url, headers: header);
+
+    if (r.statusCode != 200) {
+      commonErrorHandler(onError, r.statusCode);
+      return;
+    }
+
     final result = json.decode(r.body);
     if (onSuccess != null) onSuccess(result['data']);
   } catch (err) {
-    if(onError != null) onError(err);
+    commonErrorHandler(onError, err);
   }
+}
+
+commonErrorHandler(onError, content) {
+  if (onError != null) {
+    onError(content);
+  }
+  print(content);
 }
