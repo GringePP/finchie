@@ -1,3 +1,4 @@
+import 'package:finchie/page/introduce_page.dart';
 import 'package:flutter/material.dart';
 import 'package:finchie/page/info_page.dart';
 
@@ -43,7 +44,7 @@ class _HomePageState extends ScaffoldState {
             ),
             IconButton(
               icon: Icon(Icons.send),
-              onPressed: null,
+              onPressed: () => startPage(context, IntroducePage()),
               tooltip: 'Go',
             )
           ],

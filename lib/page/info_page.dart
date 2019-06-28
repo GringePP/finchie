@@ -16,7 +16,12 @@ class InfoPage extends StatefulWidget {
 class _InfoPageState extends State<InfoPage> {
   final String title = 'Info Page';
 
-  Map<String, dynamic> info = {"name": "", "small_avatar_url": "", "created_at": "", "avatar_url": ""};
+  Map<String, dynamic> info = {
+    "name": "",
+    "small_avatar_url": "",
+    "created_at": "",
+    "avatar_url": ""
+  };
 
   @override
   void initState() {
@@ -32,21 +37,17 @@ class _InfoPageState extends State<InfoPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(this.title),
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () => _close(context),
-          ),
-        ),
-        body: Center(
-          child: Column(
-            children: <Widget>[
-              UserInfoWidget(info)
-            ],
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(this.title),
+        // leading: IconButton(
+        //   icon: Icon(Icons.arrow_back),
+        //   onPressed: () => _close(context),
+        // ),
+      ),
+      body: Center(
+        child: Column(
+          children: <Widget>[UserInfoWidget(info)],
         ),
       ),
     );
