@@ -5,8 +5,6 @@ import 'package:http/http.dart' as http;
 const BASE_URL = 'https://yuque.com/api/v2';
 const USER_INFO_URL = '$BASE_URL/user';
 
-const HEADER = '';
-
 _getHeader() {
   Map<String, String> header = {
     'X-Auth-Token': 'cRVCHKp15mUWkpLrmOYIrT23tg8O8oAkPmOiBRzx'
@@ -15,6 +13,7 @@ _getHeader() {
 }
 
 fetch(url, {onSuccess, onError}) async {
+  print('fetch: $url');
   final header = _getHeader();
   try {
     http.Response r = await http.get(url, headers: header);

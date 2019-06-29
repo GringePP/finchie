@@ -1,7 +1,5 @@
-import 'dart:convert';
 
 import 'package:finchie/network/yuque_api.dart';
-import 'package:finchie/util/common_util.dart';
 import 'package:finchie/widget/user_info_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -26,13 +24,10 @@ class _InfoPageState extends State<InfoPage> {
   @override
   void initState() {
     super.initState();
-    fetch(USER_INFO_URL, onSuccess: _onGetData);
-  }
-
-  _onGetData(data) {
-    setState(() {
-      info = data;
-    });
+    fetch(USER_INFO_URL,
+        onSuccess: (data) => this.setState(() {
+              info = data;
+            }));
   }
 
   @override
@@ -40,10 +35,6 @@ class _InfoPageState extends State<InfoPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(this.title),
-        // leading: IconButton(
-        //   icon: Icon(Icons.arrow_back),
-        //   onPressed: () => _close(context),
-        // ),
       ),
       body: Center(
         child: Column(
@@ -51,9 +42,5 @@ class _InfoPageState extends State<InfoPage> {
         ),
       ),
     );
-  }
-
-  _close(BuildContext context) {
-    closePage(context);
   }
 }
