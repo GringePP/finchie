@@ -53,57 +53,63 @@ class _HomePageState extends ScaffoldState {
   Widget build(BuildContext context) {
     Container buildGroups(groups) {
       bool groupsNull = groups == null;
-      if (groupsNull) return buildCardContainer(Container(), height: 100);
+      if (groupsNull) return buildCardContainer(Container());
+      List<Widget> listItems = [];
+      for (var group in groups) {
+        listItems.add(ListTile(
+          title: Text(
+            group["name"],
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          subtitle: Text(
+            group["description"] ?? "No description",
+          ),
+          leading: Container(
+            width: 30,
+            height: 30,
+            child: CircleAvatar(
+              backgroundImage: NetworkImage(group["avatar_url"]),
+              backgroundColor: Colors.grey[500],
+            ),
+          ),
+        ));
+      }
       return buildCardContainer(
-          Container(
-              child: ListView.builder(
-                  itemCount: groups.length,
-                  itemBuilder: (context, idx) => ListTile(
-                        title: Text(groups[idx]["name"]),
-                      ))),
-          height: 100);
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: listItems,
+          ),
+          padding: EdgeInsets.all(5));
+    }
+
+    Container buildTitle(String label) {
+      return Container(
+        margin: EdgeInsets.only(left: 10, top: 10),
+        child: Text(
+          label,
+          style: TextStyle(
+              color: Colors.accents[0],
+              fontWeight: FontWeight.w800,
+              fontSize: 22),
+          textAlign: TextAlign.start,
+        ),
+      );
     }
 
     return Scaffold(
       appBar: AppBar(
+        leading: Icon(Icons.menu),
         title: Text(this.title),
       ),
       body: ListView(
-        children: <Widget>[
-          UserInfoWidget(userInfo),
-          buildGroups(groups),
-        ],
+        children: <Widget>[],
+      ),
+      drawer: Drawer(),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: null,
       ),
     );
-    // return Scaffold(
-    //   appBar: AppBar(
-    //     title: Text(this.title),
-    //   ),
-    //   floatingActionButton: FloatingActionButton(
-    //     onPressed: () => _onStartPage(context),
-    //     child: Icon(Icons.send),
-    //   ),
-    //   body: Center(
-    //     child: Column(
-    //       mainAxisAlignment: MainAxisAlignment.center,
-    //       children: <Widget>[
-    //         Text(
-    //           this.title,
-    //           style: Theme.of(context).textTheme.display2,
-    //         ),
-    //         Text(
-    //           'this is a content',
-    //           style: Theme.of(context).textTheme.display1,
-    //         ),
-    //         IconButton(
-    //           icon: Icon(Icons.send),
-    //           onPressed: () => startPage(context, IntroducePage()),
-    //           tooltip: 'Go',
-    //         )
-    //       ],
-    //     ),
-    //   ),
-    // );
   }
 
   _onStartPage(BuildContext context) {

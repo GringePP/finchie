@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:finchie/style/styles.dart';
 
-Container buildCardContainer(Widget w, {double height = 100}) {
+Container buildCardContainer(Widget widget,
+    {color = Colors.white,
+    padding = const EdgeInsets.all(20),
+    margin = const EdgeInsets.all(10)}) {
   return Container(
-    padding: EdgeInsets.all(20),
-    margin: EdgeInsets.all(10),
-    height: height,
+    padding: padding,
+    margin: margin,
     decoration: BoxDecoration(
-        color: Colors.white,
+        color: color,
         borderRadius: BorderRadius.all(Radius.circular(10)),
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-            color: Color(0x22000000),
-            offset: Offset(2, 5),
-            blurRadius: 10.0,
-          ),
-        ]),
-    child: w,
+        boxShadow: boxShadow),
+    child: widget,
   );
 }

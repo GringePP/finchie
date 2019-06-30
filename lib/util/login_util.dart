@@ -1,0 +1,3 @@
+bool isLogin() {
+  return false;
+}
