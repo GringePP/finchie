@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:finchie/page/info_page.dart';
 
 import 'package:finchie/util/common_util.dart';
+import 'package:finchie/style/styles.dart' as finchieStyle;
 
 class HomePage extends Scaffold {
   HomePage({this.title});
@@ -28,10 +29,18 @@ class _HomePageState extends ScaffoldState {
     "created_at": ""
   };
   List groups;
+  List repos;
 
   @override
   void initState() {
-    fetch(USER_INFO_URL, onSuccess: _onGetUserInfo);
+    // fetch(USER_INFO_URL, onSuccess: _onGetUserInfo);
+    fetch(USER_REPOS_URL, onSuccess: _onGetRepos);
+  }
+
+  _onGetRepos(data) {
+    setState(() {
+      repos = data;
+    });
   }
 
   _onGetUserInfo(data) {
@@ -96,18 +105,66 @@ class _HomePageState extends ScaffoldState {
       );
     }
 
+    Widget buildRepos(repos) {
+      if (repos == null) {
+        Widget item = Center(
+          child: Text(
+            '知识库为空',
+            style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.w600,
+                color: Colors.grey[500]),
+          ),
+        );
+        return item;
+      }
+      List<Widget> items = [];
+      for (var repo in repos) {
+        items.add(Card(
+          elevation: 2.5,
+          child: ListTile(
+            leading: Stack(
+              alignment: Alignment.center,
+              children: <Widget>[
+                CircleAvatar(
+                  backgroundColor: Theme.of(context).primaryColor,
+                ),
+                Text(
+                  repo["name"][0],
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20),
+                )
+              ],
+            ),
+            title: Text(
+              repo["name"],
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            subtitle: Text(repo["description"]),
+          ),
+        ));
+      }
+      return ListView(
+        children: items,
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         leading: Icon(Icons.menu),
-        title: Text(this.title),
+        title: Text(this.title,
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+            )),
       ),
-      body: ListView(
-        children: <Widget>[],
-      ),
+      body: buildRepos(repos),
       drawer: Drawer(),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: null,
+        tooltip: '新增知识库',
       ),
     );
   }

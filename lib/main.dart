@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:finchie/page/home_page.dart';
 import 'package:finchie/util/login_util.dart' as loginUtil;
+import 'package:finchie/widget/loading_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -23,7 +24,8 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    //TODO check login status
+    super.initState();
+    print('login state: $isLogin');
     setState(() {
       isLogin = loginUtil.isLogin();
     });
@@ -35,7 +37,7 @@ class _MyAppState extends State<MyApp> {
     if (!isLogin) {
       homePage = NoLoginWidget();
     } else {
-      homePage = HomePage(title: 'aaa');
+      homePage = HomePage(title: '我的知识库');
     }
     return MaterialApp(
       home: homePage,
@@ -49,12 +51,11 @@ class NoLoginWidget extends StatelessWidget {
         context: context,
         barrierDismissible: true,
         builder: (ctx) {
-          return AlertDialog(
-            content: Column(
-              children: <Widget>[CircularProgressIndicator(), Text("...")],
-            ),
-          );
+          return LoadingDialog();
         });
+    Future.delayed(Duration(milliseconds: 2000), () {
+      Navigator.of(context, rootNavigator: false).pop();
+    });
   }
 
   @override

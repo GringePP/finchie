@@ -4,12 +4,17 @@ import 'package:http/http.dart' as http;
 
 const BASE_URL = 'https://yuque.com/api/v2';
 const USER_INFO_URL = '$BASE_URL/user';
+const USER_REPOS_URL = '$BASE_URL/users/383674/repos';
 
 _getHeader() {
   Map<String, String> header = {
     'X-Auth-Token': 'cRVCHKp15mUWkpLrmOYIrT23tg8O8oAkPmOiBRzx'
   };
   return header;
+}
+
+num _getUserId() {
+  return 383674;
 }
 
 fetch(url, {onSuccess, onError}) async {
