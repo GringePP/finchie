@@ -1,3 +1,4 @@
+import 'package:finchie/style/styles.dart';
 import 'package:flutter/material.dart';
 
 final emptyRepo = Center(
@@ -22,7 +23,7 @@ buildRepoList(BuildContext context, dynamic repos) {
                 alignment: Alignment.center,
                 children: <Widget>[
                   CircleAvatar(
-                    backgroundColor: Theme.of(context).primaryColor,
+                    backgroundColor: randomColor(),
                   ),
                   Text(
                     repos[idx]["name"][0],

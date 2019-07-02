@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -11,3 +13,9 @@ const boxShadow = <BoxShadow>[
     blurRadius: 10.0,
   )
 ];
+
+randomColor() {
+  final total = Colors.primaries.length;
+  final randomIdx = Random().nextInt(total);
+  return Colors.primaries[randomIdx];
+}
