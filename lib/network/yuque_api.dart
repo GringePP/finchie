@@ -17,6 +17,11 @@ num _getUserId() {
   return 383674;
 }
 
+fetchDocs(namespace, {onSuccess, onError}) async {
+  final url = '$BASE_URL/repos/$namespace/docs';
+  await fetch(url, onSuccess: onSuccess, onError: onError);
+}
+
 fetch(url, {onSuccess, onError}) async {
   print('fetch: $url');
   final header = _getHeader();

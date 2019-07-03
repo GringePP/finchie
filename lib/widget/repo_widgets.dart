@@ -1,6 +1,8 @@
 import 'package:finchie/style/styles.dart';
+import 'package:finchie/util/common_util.dart';
+import 'package:finchie/widget/card_generator.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:finchie/page/repo_page.dart';
 
 final emptyRepo = Center(
   child: Text(
@@ -17,7 +19,12 @@ buildRepoList(BuildContext context, dynamic repos) {
       itemBuilder: (ctx, idx) => Card(
           elevation: 2.5,
           child: InkWell(
-            onTap: () => Fluttertoast.showToast(msg: repos[idx]["name"]),
+            onTap: () => startPage(
+                context,
+                RepoPage(
+                  repos[idx]["namespace"],
+                  name: repos[idx]["name"],
+                )),
             onLongPress: () => showDialog(
                 context: context,
                 builder: (ctx) => AlertDialog(
@@ -40,7 +47,7 @@ buildRepoList(BuildContext context, dynamic repos) {
                 alignment: Alignment.center,
                 children: <Widget>[
                   CircleAvatar(
-                    backgroundColor: randomColor(),
+                    backgroundColor: Colors.grey[500],
                   ),
                   Text(
                     repos[idx]["name"][0],
@@ -61,4 +68,100 @@ buildRepoList(BuildContext context, dynamic repos) {
               ),
             ),
           ))).build(context);
+}
+
+buildDocList(BuildContext context, dynamic docs) {
+  return ListView.builder(
+      padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+      itemCount: docs.length,
+      itemBuilder: (ctx, idx) => Card(
+            elevation: 2.5,
+            clipBehavior: Clip.antiAlias,
+            child: InkWell(
+              child: Container(
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      color: Colors.grey[500],
+                      padding: EdgeInsets.all(10),
+                      constraints: BoxConstraints.expand(
+                        height: 120,
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            docs[idx]["title"],
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 20),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 5),
+                            child: Text(
+                              docs[idx]["description"],
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 13),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      constraints: BoxConstraints.expand(height: 50),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: <Widget>[
+                          Row(
+                            children: <Widget>[
+                              IconButton(
+                                onPressed: () => {},
+                                icon: Icon(
+                                  Icons.star,
+                                  color: Colors.grey[500],
+                                ),
+                                tooltip: '点赞数',
+                              ),
+                              Text(docs[idx]["likes_count"].toString())
+                            ],
+                          ),
+                          Row(
+                            children: <Widget>[
+                              IconButton(
+                                onPressed: () => {},
+                                icon: Icon(
+                                  Icons.comment,
+                                  color: Colors.grey[500],
+                                ),
+                                tooltip: '评论数',
+                              ),
+                              Text(docs[idx]["comments_count"].toString())
+                            ],
+                          ),
+                          Row(
+                            children: <Widget>[
+                              IconButton(
+                                onPressed: () => {},
+                                icon: Icon(
+                                  Icons.code,
+                                  color: Colors.grey[500],
+                                ),
+                                tooltip: '字数',
+                              ),
+                              Text(docs[idx]["word_count"].toString())
+                            ],
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ));
 }

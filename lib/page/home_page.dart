@@ -1,8 +1,5 @@
 import 'package:finchie/network/yuque_api.dart';
-import 'package:finchie/page/introduce_page.dart';
-import 'package:finchie/widget/card_generator.dart';
 import 'package:finchie/widget/repo_widgets.dart' as repoWidgets;
-import 'package:finchie/widget/user_info_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:finchie/page/info_page.dart';
 

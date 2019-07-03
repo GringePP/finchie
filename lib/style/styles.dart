@@ -9,13 +9,13 @@ const textTitle =
 const boxShadow = <BoxShadow>[
   BoxShadow(
     color: Color(0x22000000),
-    offset: Offset(2, 5),
-    blurRadius: 10.0,
+    offset: Offset(2, 3),
+    blurRadius: 5.0,
   )
 ];
 
 randomColor() {
   final total = Colors.primaries.length;
   final randomIdx = Random().nextInt(total);
-  return Colors.primaries[randomIdx];
+  return Colors.primaries[randomIdx][500];
 }

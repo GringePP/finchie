@@ -3,8 +3,8 @@ import 'package:finchie/style/styles.dart';
 
 Container buildCardContainer(Widget widget,
     {color = Colors.white,
-    padding = const EdgeInsets.all(20),
-    margin = const EdgeInsets.all(10)}) {
+    padding = const EdgeInsets.all(0),
+    margin = const EdgeInsets.all(5)}) {
   return Container(
     padding: padding,
     margin: margin,
