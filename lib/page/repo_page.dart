@@ -1,6 +1,7 @@
 import 'package:finchie/network/yuque_api.dart';
 import 'package:flutter/material.dart';
 import 'package:finchie/widget/repo_widgets.dart' as repoWidgets;
+import 'package:finchie/style/styles.dart' as finchieStyle;
 
 class RepoPage extends StatefulWidget {
   RepoPage(this.namespace, {this.name});
@@ -34,11 +35,11 @@ class _RepoPageState extends State<RepoPage> {
         appBar: AppBar(
           title: Text(
             widget.name ?? widget.namespace,
-            style: TextStyle(fontWeight: FontWeight.w600),
+            style: finchieStyle.appbarTitleStyle,
           ),
         ),
-        body: docs == null
+        body: docs == null || docs.length == 0
             ? repoWidgets.emptyRepo
-            : repoWidgets.buildDocList(context, docs));
+            : repoWidgets.buildDocList(context, docs, widget.namespace));
   }
 }

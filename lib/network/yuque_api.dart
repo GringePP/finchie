@@ -22,6 +22,11 @@ fetchDocs(namespace, {onSuccess, onError}) async {
   await fetch(url, onSuccess: onSuccess, onError: onError);
 }
 
+fetchDoc(namespace, id, {onSuccess, onError}) async {
+  final url = '$BASE_URL/repos/$namespace/docs/$id';
+  await fetch(url, onSuccess: onSuccess, onError: onError);
+}
+
 fetch(url, {onSuccess, onError}) async {
   print('fetch: $url');
   final header = _getHeader();

@@ -1,9 +1,7 @@
 import 'package:finchie/network/yuque_api.dart';
 import 'package:finchie/widget/repo_widgets.dart' as repoWidgets;
 import 'package:flutter/material.dart';
-import 'package:finchie/page/info_page.dart';
 
-import 'package:finchie/util/common_util.dart';
 import 'package:finchie/style/styles.dart' as finchieStyle;
 
 class HomePage extends Scaffold {
@@ -49,10 +47,7 @@ class _HomePageState extends ScaffoldState {
     return Scaffold(
       appBar: AppBar(
         leading: Icon(Icons.menu),
-        title: Text(this.title,
-            style: TextStyle(
-              fontWeight: FontWeight.w600,
-            )),
+        title: Text(this.title, style: finchieStyle.appbarTitleStyle),
       ),
       body: RefreshIndicator(
         onRefresh: _onRefresh,
@@ -69,7 +64,4 @@ class _HomePageState extends ScaffoldState {
     );
   }
 
-  _onStartPage(BuildContext context) {
-    startPage(context, InfoPage());
-  }
 }

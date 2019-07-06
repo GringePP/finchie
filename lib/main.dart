@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:finchie/page/home_page.dart';
 import 'package:finchie/util/login_util.dart' as loginUtil;
 import 'package:finchie/widget/loading_dialog.dart';

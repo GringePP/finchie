@@ -3,6 +3,7 @@ import 'package:finchie/util/common_util.dart';
 import 'package:finchie/widget/card_generator.dart';
 import 'package:flutter/material.dart';
 import 'package:finchie/page/repo_page.dart';
+import 'package:finchie/page/doc_page.dart';
 
 final emptyRepo = Center(
   child: Text(
@@ -70,7 +71,7 @@ buildRepoList(BuildContext context, dynamic repos) {
           ))).build(context);
 }
 
-buildDocList(BuildContext context, dynamic docs) {
+buildDocList(BuildContext context, dynamic docs, String namespace) {
   return ListView.builder(
       padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
       itemCount: docs.length,
@@ -78,6 +79,13 @@ buildDocList(BuildContext context, dynamic docs) {
             elevation: 2.5,
             clipBehavior: Clip.antiAlias,
             child: InkWell(
+              onTap: () => startPage(
+                  context,
+                  DocPage(
+                    namespace,
+                    docs[idx]["id"],
+                    title: docs[idx]["title"],
+                  )),
               child: Container(
                 child: Column(
                   children: <Widget>[

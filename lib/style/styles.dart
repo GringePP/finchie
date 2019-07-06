@@ -6,6 +6,9 @@ import 'package:flutter/widgets.dart';
 const textTitle =
     TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold);
 
+const appbarTitleStyle =
+    TextStyle(color: Colors.white, fontWeight: FontWeight.w600);
+
 const boxShadow = <BoxShadow>[
   BoxShadow(
     color: Color(0x22000000),
@@ -13,6 +16,9 @@ const boxShadow = <BoxShadow>[
     blurRadius: 5.0,
   )
 ];
+
+const docTitle =
+    TextStyle(color: Color(0xFF666666), fontWeight: FontWeight.w700, fontSize: 25);
 
 randomColor() {
   final total = Colors.primaries.length;
