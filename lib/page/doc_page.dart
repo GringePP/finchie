@@ -1,4 +1,5 @@
 import 'package:finchie/network/yuque_api.dart';
+import 'package:finchie/widget/doc_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:finchie/style/styles.dart' as finchieStyle;
 
@@ -32,10 +33,6 @@ class _DocPageState extends State<DocPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          widget.title ?? widget.id.toString(),
-          style: finchieStyle.appbarTitleStyle,
-        ),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
@@ -53,19 +50,9 @@ class _DocPageState extends State<DocPage> {
           : Container(
               color: Colors.white,
               constraints: BoxConstraints.expand(),
-              padding: EdgeInsets.all(15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 30),
-                    child: Text(
-                      doc["title"],
-                      style: finchieStyle.docTitle,
-                    ),
-                  ),
-                ],
+              child: ListView(
+                padding: EdgeInsets.all(18),
+                children: <Widget>[buildDocHeader(doc), buildDocBody(doc)],
               ),
             ),
     );

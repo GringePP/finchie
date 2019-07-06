@@ -17,8 +17,11 @@ const boxShadow = <BoxShadow>[
   )
 ];
 
-const docTitle =
-    TextStyle(color: Color(0xFF666666), fontWeight: FontWeight.w700, fontSize: 25);
+const docTitle = TextStyle(
+    color: Color(0xFF333333), fontWeight: FontWeight.w700, fontSize: 25);
+
+const docBody = TextStyle(
+    color: Color(0xFF333333), fontWeight: FontWeight.w300, fontSize: 16);
 
 randomColor() {
   final total = Colors.primaries.length;

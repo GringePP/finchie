@@ -23,7 +23,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    print('login state: $isLogin');
     setState(() {
       isLogin = loginUtil.isLogin();
     });
