@@ -1,9 +1,10 @@
 import 'package:finchie/page/home_page.dart';
+import 'package:finchie/util/common_util.dart';
 import 'package:finchie/util/login_util.dart' as loginUtil;
-import 'package:finchie/widget/loading_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:finchie/page/login_page.dart';
 
 void main() {
   // debugPaintSizeEnabled = true;
@@ -34,7 +35,7 @@ class _MyAppState extends State<MyApp> {
     if (!isLogin) {
       homePage = NoLoginWidget();
     } else {
-      homePage = HomePage(title: '我的知识库');
+      homePage = HomePage();
     }
     return MaterialApp(
       home: homePage,
@@ -43,17 +44,6 @@ class _MyAppState extends State<MyApp> {
 }
 
 class NoLoginWidget extends StatelessWidget {
-  _onPress(BuildContext context) {
-    showDialog(
-        context: context,
-        barrierDismissible: true,
-        builder: (ctx) {
-          return LoadingDialog();
-        });
-    Future.delayed(Duration(milliseconds: 2000), () {
-      Navigator.of(context, rootNavigator: false).pop();
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +57,7 @@ class NoLoginWidget extends StatelessWidget {
             children: <Widget>[
               Text('还没有登录，请输入Token登录'),
               RaisedButton(
-                onPressed: () => _onPress(context),
+                onPressed: () => startPage(context, LoginPage()),
                 color: Colors.blue,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(40))),

@@ -5,20 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:finchie/style/styles.dart' as finchieStyle;
 
 class HomePage extends Scaffold {
-  HomePage({this.title});
-
-  final String title;
-
   @override
   ScaffoldState createState() {
-    return _HomePageState(title: this.title);
+    return _HomePageState();
   }
 }
 
 class _HomePageState extends ScaffoldState {
-  _HomePageState({this.title});
-
-  final String title;
   Map<String, dynamic> userInfo = {
     "name": "",
     "small_avatar_url": "",
@@ -47,7 +40,7 @@ class _HomePageState extends ScaffoldState {
     return Scaffold(
       appBar: AppBar(
         leading: Icon(Icons.menu),
-        title: Text(this.title, style: finchieStyle.appbarTitleStyle),
+        title: Text('我的知识库', style: finchieStyle.appbarTitleStyle),
       ),
       body: RefreshIndicator(
         onRefresh: _onRefresh,
@@ -63,5 +56,4 @@ class _HomePageState extends ScaffoldState {
       ),
     );
   }
-
 }

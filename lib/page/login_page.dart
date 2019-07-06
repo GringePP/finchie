@@ -1,9 +1,64 @@
+import 'package:finchie/style/styles.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return null;
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(
+            "登录",
+            style: appbarTitleStyle,
+          ),
+        ),
+        body: Container(
+          child: Center(
+            child: ListView(
+              padding: EdgeInsets.all(20),
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.only(bottom: 20),
+                  child: TextField(
+                      decoration: InputDecoration(labelText: '请输入Token')),
+                ),
+                RaisedButton(
+                    onPressed: () => {},
+                    color: Colors.blue,
+                    padding: EdgeInsets.all(12),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(40))),
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: Text(
+                        '登录',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600),
+                      ),
+                    )),
+                InkWell(
+                  onTap: () => {},
+                  child: Container(
+                    margin: EdgeInsets.only(top: 20),
+                    alignment: Alignment.bottomRight,
+                    child: Text(
+                      "如何获得Token？",
+                      style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          decoration: TextDecoration.underline),
+                    ),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.all(50),
+                  child: Text('Logo here'),
+                )
+              ],
+            ),
+          ),
+        ));
   }
 }
