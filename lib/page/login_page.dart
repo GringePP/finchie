@@ -43,7 +43,7 @@ class LoginPage extends StatelessWidget {
                 GestureDetector(
                   onTap: () => startPage(context, TokenInstructPage()),
                   child: Container(
-                    margin: EdgeInsets.only(top: 20),
+                    padding: EdgeInsets.only(top: 20),
                     alignment: Alignment.bottomRight,
                     child: Text(
                       "如何获得Token？",

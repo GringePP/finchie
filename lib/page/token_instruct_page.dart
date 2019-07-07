@@ -1,5 +1,7 @@
 import 'package:finchie/style/styles.dart';
+import 'package:finchie/util/common_util.dart';
 import 'package:flutter/material.dart';
+import 'package:finchie/page/image_page.dart';
 
 const titles = ['注册登录', '创建Token', '完成'];
 
@@ -32,13 +34,14 @@ class TokenInstructPage extends StatelessWidget {
             itemCount: titles.length,
             itemBuilder: (ctx, idx) => buildStep(
                 idx + 1, titles[idx], contents[idx],
-                image: images[idx]),
+                image: images[idx],
+                onTap: () => startPage(context, ImagePage(image: images[idx]))),
           ),
         ));
   }
 }
 
-buildStep(int idx, String title, String content, {Widget image}) {
+buildStep(int idx, String title, String content, {Widget image, onTap}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
@@ -83,7 +86,10 @@ buildStep(int idx, String title, String content, {Widget image}) {
           ? Container()
           : Padding(
               padding: EdgeInsets.fromLTRB(50, 0, 0, 10),
-              child: image,
+              child: GestureDetector(
+                onTap: () => onTap(),
+                child: image,
+              ),
             ),
       Padding(
         padding: EdgeInsets.fromLTRB(50, 0, 0, 10),

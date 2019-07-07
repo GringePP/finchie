@@ -28,6 +28,9 @@ dependencies:
   fluttertoast: ^2.1.1
   flutter_html: ^0.10.4
   shared_preferences: ^0.5.3
+  flutter_drag_scale:
+    git: https://github.com/LiuC520/flutter_drag_scale.git
+  pinch_zoom_image: ^0.2.5
 
   flutter_localizations:
     sdk: flutter
