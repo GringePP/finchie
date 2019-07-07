@@ -1,5 +1,7 @@
 import 'package:finchie/style/styles.dart';
+import 'package:finchie/util/common_util.dart';
 import 'package:flutter/material.dart';
+import 'package:finchie/page/token_instruct_page.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -38,8 +40,8 @@ class LoginPage extends StatelessWidget {
                             fontWeight: FontWeight.w600),
                       ),
                     )),
-                InkWell(
-                  onTap: () => {},
+                GestureDetector(
+                  onTap: () => startPage(context, TokenInstructPage()),
                   child: Container(
                     margin: EdgeInsets.only(top: 20),
                     alignment: Alignment.bottomRight,
