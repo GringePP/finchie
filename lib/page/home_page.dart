@@ -25,9 +25,9 @@ class _HomePageState extends ScaffoldState {
     fetch(USER_REPOS_URL, onSuccess: _onGetRepos);
   }
 
-  _onGetRepos(data) {
+  _onGetRepos(res) {
     setState(() {
-      repos = data;
+      repos = res['data'];
     });
   }
 

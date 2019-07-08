@@ -25,8 +25,8 @@ class _InfoPageState extends State<InfoPage> {
   void initState() {
     super.initState();
     fetch(USER_INFO_URL,
-        onSuccess: (data) => this.setState(() {
-              info = data;
+        onSuccess: (res) => this.setState(() {
+              info = res['data'];
             }));
   }
 

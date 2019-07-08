@@ -23,9 +23,9 @@ class _RepoPageState extends State<RepoPage> {
     futureList.add(f);
   }
 
-  _onGetDocs(data) {
+  _onGetDocs(res) {
     setState(() {
-      docs = data;
+      docs = res['data'];
     });
   }
 

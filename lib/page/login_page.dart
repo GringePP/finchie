@@ -4,8 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:finchie/page/token_instruct_page.dart';
 
 class LoginPage extends StatelessWidget {
+  _onSubmit(context, token) {
+    
+  }
+
   @override
   Widget build(BuildContext context) {
+    final textController = TextEditingController.fromValue(TextEditingValue());
     return Scaffold(
         appBar: AppBar(
           title: Text(
@@ -21,10 +26,11 @@ class LoginPage extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(bottom: 20),
                   child: TextField(
+                      controller: textController,
                       decoration: InputDecoration(labelText: '请输入Token')),
                 ),
                 RaisedButton(
-                    onPressed: () => {},
+                    onPressed: () => _onSubmit(context, textController.text),
                     color: Colors.blue,
                     padding: EdgeInsets.all(12),
                     shape: RoundedRectangleBorder(

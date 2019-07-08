@@ -39,7 +39,7 @@ fetch(url, {onSuccess, onError}) async {
     }
 
     final result = json.decode(r.body);
-    if (onSuccess != null) onSuccess(result['data']);
+    if (onSuccess != null) onSuccess(result);
   } catch (err) {
     commonErrorHandler(onError, err);
   }

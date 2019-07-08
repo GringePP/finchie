@@ -23,9 +23,9 @@ class _DocPageState extends State<DocPage> {
     fetchDoc(widget.namespace, widget.id, onSuccess: _onGetDoc);
   }
 
-  _onGetDoc(data) {
+  _onGetDoc(res) {
     setState(() {
-      doc = data;
+      doc = res['data'];
     });
   }
 
