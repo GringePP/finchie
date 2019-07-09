@@ -1,11 +1,50 @@
 import 'package:finchie/style/styles.dart';
 import 'package:finchie/util/common_util.dart';
+import 'package:finchie/widget/dialog_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:finchie/page/token_instruct_page.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginPage extends StatelessWidget {
   _onSubmit(context, token) {
-    
+    if (token == null || token == '') {
+      Fluttertoast.showToast(msg: 'Token不能为空', toastLength: Toast.LENGTH_SHORT);
+      return;
+    }
+    showDialog(
+        context: context,
+        builder: _dynamicDialogBuilder,);
+  }
+
+  Widget _dynamicDialogBuilder(BuildContext context) {
+    bool loading = true;
+    bool isTokenValid = false;
+    return StatefulBuilder(
+      builder: (ctx, StateSetter setState) {
+        return CommonDialog(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(right: 10),
+                    child: Text('正在校验Token有效性'),
+                  ),
+                  Container(
+                    width: 20,
+                    height: 20,
+                    child: loading
+                        ? CircularProgressIndicator()
+                        : Icon(isTokenValid ? Icons.done : Icons.clear),
+                  )
+                ],
+              )
+            ],
+          ),
+        );
+      },
+    );
   }
 
   @override
