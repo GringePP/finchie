@@ -1,20 +1,35 @@
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 
 const BASE_URL = 'https://yuque.com/api/v2';
 const USER_INFO_URL = '$BASE_URL/user';
 const USER_REPOS_URL = '$BASE_URL/users/383674/repos';
 
-_getHeader() {
+_getHeader({token}) {
   Map<String, String> header = {
-    'X-Auth-Token': 'cRVCHKp15mUWkpLrmOYIrT23tg8O8oAkPmOiBRzx'
+    'X-Auth-Token': token ?? 'cRVCHKp15mUWkpLrmOYIrT23tg8O8oAkPmOiBRzx'
   };
   return header;
 }
 
 num _getUserId() {
   return 383674;
+}
+
+typedef TokenInfo = void Function(Map<String, dynamic> info);
+
+checkToken(token, {TokenInfo onSuccess, onError}) {
+  final url = 'https://www.yuque.com/api/v2/user';
+  fetch(url, token: token, onSuccess: (res) {
+    if (res['status'] == 401) {
+      commonErrorHandler(onError, '401');
+    } else {
+      onSuccess(res['data']);
+    }
+  }, onError: onError);
 }
 
 fetchDocs(namespace, {onSuccess, onError}) async {
@@ -27,9 +42,9 @@ fetchDoc(namespace, id, {onSuccess, onError}) async {
   await fetch(url, onSuccess: onSuccess, onError: onError);
 }
 
-fetch(url, {onSuccess, onError}) async {
+fetch(url, {onSuccess, onError, token}) async {
   print('fetch: $url');
-  final header = _getHeader();
+  final header = _getHeader(token: token);
   try {
     http.Response r = await http.get(url, headers: header);
 
