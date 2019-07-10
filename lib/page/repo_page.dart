@@ -15,12 +15,11 @@ class RepoPage extends StatefulWidget {
 
 class _RepoPageState extends State<RepoPage> {
   List docs;
-  List<Future> futureList = List();
 
   @override
   void initState() {
-    Future f = fetchDocs(widget.namespace, onSuccess: _onGetDocs);
-    futureList.add(f);
+    super.initState();
+    fetchDocs(widget.namespace, onSuccess: _onGetDocs);
   }
 
   _onGetDocs(res) {

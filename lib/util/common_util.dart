@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-startPage(context, Widget w) {
-  Navigator.push(context, MaterialPageRoute(builder: (ctx) => w));
+Future startPage(context, Widget w) {
+  return Navigator.push(context, MaterialPageRoute(builder: (ctx) => w));
 }
 
 closePage(context) {

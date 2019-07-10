@@ -1,10 +1,11 @@
+import 'package:finchie/constant/constant.dart';
 import 'package:finchie/page/home_page.dart';
 import 'package:finchie/util/common_util.dart';
 import 'package:finchie/util/login_util.dart' as loginUtil;
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:finchie/page/login_page.dart';
+import 'package:finchie/action/actions.dart';
 
 void main() {
   // debugPaintSizeEnabled = true;
@@ -31,19 +32,26 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    Widget homePage;
-    if (!isLogin) {
-      homePage = NoLoginWidget();
-    } else {
-      homePage = HomePage();
-    }
     return MaterialApp(
-      home: homePage,
+      home: isLogin
+          ? HomePage()
+          : NoLoginWidget(
+              onLogin: (res) {
+                if (res == LOGIN) {
+                  setState(() {
+                    isLogin = true;
+                  });
+                }
+              },
+            ),
     );
   }
 }
 
 class NoLoginWidget extends StatelessWidget {
+  NoLoginWidget({this.onLogin});
+
+  final onLogin;
 
   @override
   Widget build(BuildContext context) {
@@ -55,9 +63,17 @@ class NoLoginWidget extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text('还没有登录，请输入Token登录'),
+              Container(
+                margin: EdgeInsets.only(bottom: 10),
+                child: Text(
+                  '还没有登录，请输入Token登录',
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
               RaisedButton(
-                onPressed: () => startPage(context, LoginPage()),
+                onPressed: () => startPage(context, LoginPage()).then((res) {
+                      onLogin(res);
+                    }),
                 color: Colors.blue,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(40))),

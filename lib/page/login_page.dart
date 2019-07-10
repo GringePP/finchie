@@ -1,9 +1,12 @@
+import 'package:finchie/constant/constant.dart';
 import 'package:finchie/style/styles.dart';
 import 'package:finchie/util/common_util.dart';
+import 'package:finchie/util/login_util.dart';
 import 'package:finchie/widget/token_verify_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:finchie/page/token_instruct_page.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:finchie/network/yuque_api.dart';
 
 class LoginPage extends StatelessWidget {
   _onSubmit(context, token) {
@@ -14,7 +17,13 @@ class LoginPage extends StatelessWidget {
     showDialog(
       context: context,
       builder: (_) => TokenVerifyDialog(token: token),
-    );
+    ).then((res) {
+      if (res != null) {
+        updateToken(token);
+        updateUserId(res['id'].toString());
+        saveToken(token).then((_) => Navigator.of(context).pop(LOGIN));
+      }
+    });
   }
 
   @override

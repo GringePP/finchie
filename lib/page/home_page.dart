@@ -22,7 +22,8 @@ class _HomePageState extends ScaffoldState {
 
   @override
   void initState() {
-    fetch(USER_REPOS_URL, onSuccess: _onGetRepos);
+    super.initState();
+    fetchRepos(onSuccess: _onGetRepos);
   }
 
   _onGetRepos(res) {
@@ -31,8 +32,8 @@ class _HomePageState extends ScaffoldState {
     });
   }
 
-  Future<Null> _onRefresh() async {
-    await fetch(USER_REPOS_URL, onSuccess: _onGetRepos);
+  Future<void> _onRefresh() {
+    return fetchRepos(onSuccess: _onGetRepos);
   }
 
   @override
