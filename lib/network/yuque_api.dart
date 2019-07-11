@@ -9,7 +9,7 @@ const USER_INFO_URL = '$BASE_URL/user';
 const USER_REPOS_URL = '$BASE_URL/users/383674/repos';
 
 String _token;
-String _userId;
+int _userId;
 
 updateToken(token) {
   _token = token;
@@ -48,7 +48,7 @@ fetchDoc(namespace, id, {onSuccess, onError}) {
 }
 
 Future<void> fetchRepos({onSuccess, onError}) async {
-  final url = BASE_URL + '/users/' + _userId + '/repos';
+  final url = BASE_URL + '/users/' + _userId.toString() + '/repos';
   return fetch(url, onSuccess: onSuccess, onError: onError);
 }
 

@@ -1,4 +1,5 @@
 import 'package:finchie/constant/constant.dart';
+import 'package:finchie/network/yuque_api.dart';
 import 'package:finchie/page/home_page.dart';
 import 'package:finchie/util/common_util.dart';
 import 'package:finchie/util/login_util.dart' as loginUtil;
@@ -24,8 +25,17 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    setState(() {
-      isLogin = loginUtil.isLogin();
+    // setState(() {
+    //   isLogin = false;
+    // });
+    loginUtil.checkLogin().then((loginInfo) {
+      if (loginInfo != null) {
+        updateToken(loginInfo["token"]);
+        updateUserId(loginInfo["user_id"]);
+        setState(() {
+          isLogin = true;
+        });
+      }
     });
   }
 

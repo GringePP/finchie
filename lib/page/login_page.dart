@@ -20,8 +20,10 @@ class LoginPage extends StatelessWidget {
     ).then((res) {
       if (res != null) {
         updateToken(token);
-        updateUserId(res['id'].toString());
-        saveToken(token).then((_) => Navigator.of(context).pop(LOGIN));
+        updateUserId(res['id']);
+        saveLoginInfo(token, res['id']).then((_) {
+          Navigator.of(context).pop(LOGIN);
+        });
       }
     });
   }
