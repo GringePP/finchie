@@ -49,7 +49,7 @@ buildRepoList(BuildContext context, dynamic repos) {
                 alignment: Alignment.center,
                 children: <Widget>[
                   CircleAvatar(
-                    backgroundColor: Colors.grey[500],
+                    backgroundColor: Colors.primaries[idx % 5][600],
                   ),
                   Text(
                     repos[idx]["name"][0],
@@ -91,7 +91,7 @@ buildDocList(BuildContext context, dynamic docs, String namespace) {
                 child: Column(
                   children: <Widget>[
                     Container(
-                      color: Colors.grey[500],
+                      color: Colors.primaries[idx % 5][600],
                       padding: EdgeInsets.all(10),
                       constraints: BoxConstraints.expand(
                         height: 120,

@@ -2,7 +2,7 @@ import 'package:finchie/style/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 
-buildDocHeader(doc) {
+buildDocHeader(BuildContext context, doc) {
   const indicateColor = Color(0xFF666666);
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,7 +30,19 @@ buildDocHeader(doc) {
           IconButton(
             icon: Icon(Icons.info),
             color: indicateColor,
-            onPressed: () => {},
+            onPressed: () => showDialog(
+                context: context,
+                builder: (ctx) => AlertDialog(
+                      title: Text(doc["title"]),
+                      content: Text("所属知识库：" +
+                          doc["book"]["name"] +
+                          "\n创建于：" +
+                          doc["book"]["created_at"] +
+                          "\n命名空间：" +
+                          doc["book"]["namespace"] +
+                          "\n字数：" +
+                          doc["word_count"].toString()),
+                    )),
             tooltip: "关于",
             iconSize: 20,
           )
@@ -48,8 +60,6 @@ buildDocHeader(doc) {
 
 buildDocBody(doc) {
   return Container(
-    child: Html(
-      data: doc["body_html"]
-    ),
+    child: Html(data: doc["body_html"]),
   );
 }

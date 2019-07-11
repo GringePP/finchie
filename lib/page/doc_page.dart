@@ -52,7 +52,10 @@ class _DocPageState extends State<DocPage> {
               constraints: BoxConstraints.expand(),
               child: ListView(
                 padding: EdgeInsets.all(18),
-                children: <Widget>[buildDocHeader(doc), buildDocBody(doc)],
+                children: <Widget>[
+                  buildDocHeader(context, doc),
+                  buildDocBody(doc)
+                ],
               ),
             ),
     );
