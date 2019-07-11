@@ -28,7 +28,9 @@ class _TokenVerifyDialogState extends State<TokenVerifyDialog> {
         info = _info;
       });
     }, onError: (_) {
-      loading = false;
+      setState(() {
+        loading = false;
+      });
     });
   }
 

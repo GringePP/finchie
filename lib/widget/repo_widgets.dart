@@ -1,6 +1,7 @@
 import 'package:finchie/style/styles.dart';
 import 'package:finchie/util/common_util.dart';
 import 'package:finchie/widget/card_generator.dart';
+import 'package:finchie/widget/dialog_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:finchie/page/repo_page.dart';
 import 'package:finchie/page/doc_page.dart';
@@ -28,9 +29,9 @@ buildRepoList(BuildContext context, dynamic repos) {
                 )),
             onLongPress: () => showDialog(
                 context: context,
-                builder: (ctx) => AlertDialog(
-                      title: Text(repos[idx]["name"]),
-                      content: Column(
+                builder: (ctx) => CommonDialog(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text("id: " + repos[idx]["id"].toString()),

@@ -5,7 +5,6 @@ import 'package:finchie/util/login_util.dart' as loginUtil;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:finchie/page/login_page.dart';
-import 'package:finchie/action/actions.dart';
 
 void main() {
   // debugPaintSizeEnabled = true;
