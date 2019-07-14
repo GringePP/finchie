@@ -19,6 +19,7 @@ class LoginPage extends StatelessWidget {
       builder: (_) => TokenVerifyDialog(token: token),
     ).then((res) {
       if (res != null) {
+        // if login succeeds, update token and userid, meanwhile inform the home page.
         updateToken(token);
         updateUserId(res['id']);
         saveLoginInfo(token, res['id']).then((_) {

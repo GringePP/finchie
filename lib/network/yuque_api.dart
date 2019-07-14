@@ -52,6 +52,11 @@ Future<void> fetchRepos({onSuccess, onError}) async {
   return fetch(url, onSuccess: onSuccess, onError: onError);
 }
 
+fetchUserInfo({onSuccess, onError}) {
+  final url = '$BASE_URL/user';
+  fetch(url, onSuccess: onSuccess, onError: onError);
+}
+
 fetch(url, {onSuccess, onError, token}) {
   print('fetch: $url');
   final header = _getHeader(token: token);

@@ -12,11 +12,7 @@ class HomePage extends Scaffold {
 }
 
 class _HomePageState extends ScaffoldState {
-  Map<String, dynamic> userInfo = {
-    "name": "",
-    "small_avatar_url": "",
-    "created_at": ""
-  };
+  Map<String, dynamic> userInfo;
   List groups;
   List repos;
 
@@ -24,6 +20,9 @@ class _HomePageState extends ScaffoldState {
   void initState() {
     super.initState();
     fetchRepos(onSuccess: _onGetRepos);
+    fetchUserInfo(onSuccess: (res) {
+      userInfo = res['data'];
+    });
   }
 
   _onGetRepos(res) {
@@ -40,7 +39,6 @@ class _HomePageState extends ScaffoldState {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.menu),
         title: Text('我的知识库', style: finchieStyle.appbarTitleStyle),
       ),
       body: RefreshIndicator(
@@ -49,7 +47,23 @@ class _HomePageState extends ScaffoldState {
             ? repoWidgets.emptyRepo
             : repoWidgets.buildRepoList(context, repos),
       ),
-      drawer: Drawer(),
+      drawer: Drawer(
+        child: userInfo == null
+            ? CircularProgressIndicator()
+            : ListView(
+                padding: EdgeInsets.zero,
+                children: <Widget>[
+                  UserAccountsDrawerHeader(
+                    currentAccountPicture: CircleAvatar(
+                      backgroundImage:
+                          NetworkImage(userInfo["medium_avatar_url"]),
+                    ),
+                    accountName: Text(userInfo['name']),
+                    accountEmail: Text(userInfo['login']),
+                  )
+                ],
+              ),
+      ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: null,

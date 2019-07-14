@@ -25,9 +25,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    // setState(() {
-    //   isLogin = false;
-    // });
     loginUtil.checkLogin().then((loginInfo) {
       if (loginInfo != null) {
         updateToken(loginInfo["token"]);
