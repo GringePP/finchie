@@ -6,7 +6,6 @@ import 'package:finchie/widget/token_verify_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:finchie/page/token_instruct_page.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:finchie/network/yuque_api.dart';
 
 class LoginPage extends StatelessWidget {
   _onSubmit(context, token) {
@@ -20,9 +19,7 @@ class LoginPage extends StatelessWidget {
     ).then((res) {
       if (res != null) {
         // if login succeeds, update token and userid, meanwhile inform the home page.
-        updateToken(token);
-        updateUserId(res['id']);
-        saveLoginInfo(token, res['id']).then((_) {
+        login(token, res['id']).then((_) {
           Navigator.of(context).pop(LOGIN);
         });
       }
