@@ -17,7 +17,9 @@ class _SettingPageState extends State<SettingPage> {
             content: Text('确定退出当前用户？'),
             actions: <Widget>[
               FlatButton(
+                color: Theme.of(ctx).primaryColor,
                 child: Text('确定'),
+                textColor: Colors.white,
                 onPressed: () {
                   Navigator.of(context).pop(LOGOUT);
                 },

@@ -78,7 +78,8 @@ class _TokenVerifyDialogState extends State<TokenVerifyDialog> {
               ? Container(
                   alignment: Alignment.bottomRight,
                   child: FlatButton(
-                    textColor: Theme.of(context).primaryColor,
+                    color: Theme.of(context).primaryColor,
+                    textColor: Colors.white,
                     onPressed: () => Navigator.of(context).pop(info),
                     child: Text('登录'),
                   ),
