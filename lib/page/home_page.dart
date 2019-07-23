@@ -127,6 +127,7 @@ class _HomePageState extends ScaffoldState {
             ),
             floatingActionButton: FloatingActionButton(
               child: Icon(Icons.add),
+              backgroundColor: Theme.of(context).primaryColor,
               onPressed: null,
               tooltip: '新增知识库',
             ),

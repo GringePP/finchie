@@ -1,16 +1,29 @@
-import 'package:finchie/style/styles.dart';
 import 'package:finchie/util/common_util.dart';
-import 'package:finchie/widget/card_generator.dart';
 import 'package:finchie/widget/dialog_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:finchie/page/repo_page.dart';
 import 'package:finchie/page/doc_page.dart';
 
 final emptyRepo = Center(
-  child: Text(
-    '知识库为空',
-    style: TextStyle(
-        fontSize: 25, fontWeight: FontWeight.w600, color: Colors.grey[500]),
+  child: Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: <Widget>[
+      Image.asset(
+        './images/empty_color.png',
+        width: 50,
+        height: 50,
+      ),
+      Container(
+        margin: EdgeInsets.only(top: 10),
+        child: Text(
+          '知识库为空',
+          style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.w600,
+              color: Colors.grey[500]),
+        ),
+      )
+    ],
   ),
 );
 

@@ -32,15 +32,27 @@ class NoLoginWidget extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(40))),
                 child: Container(
-                  width: 200,
+                  width: 100,
                   padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                  child: Text(
-                    '确定',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.only(right: 5),
+                        child: Icon(
+                          Icons.done,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        '确定',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600),
+                      )
+                    ],
                   ),
                 ),
               )

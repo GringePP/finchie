@@ -51,7 +51,10 @@ class _TokenVerifyDialogState extends State<TokenVerifyDialog> {
                 height: 20,
                 child: loading
                     ? CircularProgressIndicator()
-                    : Icon(isTokenValid ? Icons.done : Icons.clear),
+                    : Icon(
+                        isTokenValid ? Icons.done : Icons.clear,
+                        color: Theme.of(context).primaryColor,
+                      ),
               )
             ],
           ),
